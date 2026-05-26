@@ -1,86 +1,112 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - HobbyHub</title>
-    <link rel="icon" href="data:,">
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
     <nav>
-        <h1>HobbyHub</h1>
+      <h1>HobbyHub</h1>
 
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/activities">Activities</a></li>
-            <li><a href="/progress">Progress</a></li>
-            <li><a href="/login">Login</a></li>
-        </ul>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/activities">Activities</a></li>
+        <li><a href="/progress">Progress</a></li>
+        <li><a href="/login">Login</a></li>
+      </ul>
     </nav>
 
     <section class="login-section">
+      <div class="login-card">
+        <h2>Welcome Back</h2>
+        <p>Login to continue exploring hobbies.</p>
 
-        <div class="login-card">
+        <form id="loginForm">
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            required
+          />
+          <div class="password-box">
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+              required
+            />
 
-            <h2>Welcome Back</h2>
-            <p>Login to continue exploring hobbies.</p>
+            <span
+              class="toggle-password"
+              onclick="togglePassword('password', this)"
+            >
+              👁️
+            </span>
+          </div>
+          <button type="submit">Login</button>
+          <p id="message" style="color: red; margin-top: 10px"></p>
 
-            <form id="loginForm">
-                <input type="email" id="email" placeholder="Enter your email" required>
-                <input type="password" id="password" placeholder="Enter your password" required>
-                <button type="submit">Login</button>
-                <p id="message" style="color: red; margin-top: 10px;"></p>
-
-                <p class="signup-text">
-                    Don't have an account?
-                    <a href="/signup">Sign Up</a>
-                </p>
-            </form>
-
-        </div>
-
+          <p class="signup-text">
+            Don't have an account?
+            <a href="/signup">Sign Up</a>
+          </p>
+        </form>
+      </div>
     </section>
 
     <script>
-        const form = document.getElementById('loginForm');
-        const messageEl = document.getElementById('message');
+      function togglePassword(inputId, element) {
+        const input = document.getElementById(inputId);
 
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
+        if (input.type === "password") {
+          input.type = "text";
+          element.textContent = "🙈";
+        } else {
+          input.type = "password";
+          element.textContent = "👁️";
+        }
+      }
+      
+      const form = document.getElementById("loginForm");
+      const messageEl = document.getElementById("message");
 
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-            try {
-                const response = await fetch('/api/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ email, password })
-                });
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
 
-                const data = await response.json();
+        try {
+          const response = await fetch("/api/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email, password }),
+          });
 
-                if (response.ok) {
-                    messageEl.textContent = 'Login successful! Redirecting...';
-                    messageEl.style.color = 'green';
-                    setTimeout(() => {
-                        window.location.href = '/';
-                    }, 1500);
-                } else {
-                    messageEl.textContent = data.message || 'Login failed!';
-                    messageEl.style.color = 'red';
-                }
-            } catch (error) {
-                messageEl.textContent = 'An error occurred. Please try again.';
-                messageEl.style.color = 'red';
-            }
-        });
+          const data = await response.json();
+
+          if (response.ok) {
+            messageEl.textContent = "Login successful! Redirecting...";
+            messageEl.style.color = "green";
+            setTimeout(() => {
+              window.location.href = "/";
+            }, 1500);
+          } else {
+            messageEl.textContent = data.message || "Login failed!";
+            messageEl.style.color = "red";
+          }
+        } catch (error) {
+          messageEl.textContent = "An error occurred. Please try again.";
+          messageEl.style.color = "red";
+        }
+      });
     </script>
 
     <script src="/js/navbar.js"></script>
-</body>
+  </body>
 </html>

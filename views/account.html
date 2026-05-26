@@ -1,388 +1,614 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Account Settings - HobbyHub</title>
-    <link rel="icon" href="data:,">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="/css/style.css" />
+
     <style>
-        .account-container {
-            max-width: 600px;
-            margin: 40px auto;
-            padding: 30px;
-            background: rgba(169, 152, 219, 0.2);
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
+      .account-container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 30px;
+        background: rgba(169, 152, 219, 0.2);
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      }
 
-        .account-section {
-            margin-bottom: 30px;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
+      .account-section {
+        margin-bottom: 30px;
+        padding: 20px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
 
-        .account-section h3 {
-            color: #7a5ba8;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #a998db;
-            padding-bottom: 10px;
-        }
+      .account-section h3 {
+        color: #7a5ba8;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #a998db;
+        padding-bottom: 10px;
+      }
 
-        .form-group {
-            margin-bottom: 15px;
-        }
+      .form-group {
+        margin-bottom: 15px;
+      }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #333;
-            font-weight: 500;
-        }
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: #333;
+        font-weight: 500;
+      }
 
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 14px;
-            box-sizing: border-box;
-        }
+      .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+        box-sizing: border-box;
+      }
 
-        .form-group input:focus {
-            outline: none;
-            border-color: #a998db;
-            box-shadow: 0 0 5px rgba(169, 152, 219, 0.3);
-        }
+      .form-group input:focus {
+        outline: none;
+        border-color: #a998db;
+        box-shadow: 0 0 5px rgba(169, 152, 219, 0.3);
+      }
 
-        .form-group input[type="text"]:disabled,
-        .form-group input[type="email"]:disabled {
-            background-color: #f5f5f5;
-            color: #999;
-            cursor: not-allowed;
-        }
+      .form-group input[type="text"]:disabled,
+      .form-group input[type="email"]:disabled {
+        background-color: #f5f5f5;
+        color: #999;
+        cursor: not-allowed;
+      }
 
-        .button-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
+      .button-group {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+      }
 
-        .btn {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+      .btn {
+        flex: 1;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
 
-        .btn-primary {
-            background: linear-gradient(135deg, #a998db, #c28ebf);
-            color: white;
-        }
+      .btn-primary {
+        background: linear-gradient(135deg, #a998db, #c28ebf);
+        color: white;
+      }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(169, 152, 219, 0.4);
-        }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(169, 152, 219, 0.4);
+      }
 
-        .btn-danger {
-            background: #ff6b6b;
-            color: white;
-        }
+      .btn-danger {
+        background: #ff6b6b;
+        color: white;
+      }
 
-        .btn-danger:hover {
-            background: #ff5252;
-            transform: translateY(-2px);
-        }
+      .btn-danger:hover {
+        background: #ff5252;
+        transform: translateY(-2px);
+      }
 
-        .btn-secondary {
-            background: #ddd;
-            color: #333;
-        }
+      .btn-secondary {
+        background: #ddd;
+        color: #333;
+      }
 
-        .btn-secondary:hover {
-            background: #ccc;
-        }
+      .btn-secondary:hover {
+        background: #ccc;
+      }
 
-        .message {
-            padding: 12px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-            display: none;
-        }
+      .message {
+        padding: 12px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        display: none;
+      }
 
-        .message.success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-            display: block;
-        }
+      .message.success {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+        display: block;
+      }
 
-        .message.error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-            display: block;
-        }
+      .message.error {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+        display: block;
+      }
 
-        .user-info-display {
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
+      .user-info-display {
+        background: #f9f9f9;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+      }
 
-        .user-info-display p {
-            margin: 8px 0;
-            color: #555;
-        }
+      .user-info-display p {
+        margin: 8px 0;
+        color: #555;
+      }
 
-        .user-info-display strong {
-            color: #333;
-        }
+      .user-info-display strong {
+        color: #333;
+      }
 
-        .danger-zone {
-            border: 2px solid #ff6b6b;
-            background: rgba(255, 107, 107, 0.05);
-        }
+      .danger-zone {
+        border: 2px solid #ff6b6b;
+        background: rgba(255, 107, 107, 0.05);
+      }
 
-        .danger-zone h3 {
-            color: #ff6b6b;
-            border-bottom-color: #ff6b6b;
-        }
+      .danger-zone h3 {
+        color: #ff6b6b;
+        border-bottom-color: #ff6b6b;
+      }
+
+      .password-box {
+        position: relative;
+      }
+
+      .password-box input {
+        padding-right: 45px;
+      }
+
+      .toggle-password {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 18px;
+      }
     </style>
-</head>
-<body>
+  </head>
 
+  <body>
     <nav>
-        <h1>HobbyHub</h1>
+      <h1>HobbyHub</h1>
 
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/activities">Activities</a></li>
-            <li><a href="/progress">Progress</a></li>
-        </ul>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/activities">Activities</a></li>
+        <li><a href="/progress">Progress</a></li>
+      </ul>
     </nav>
 
     <div class="account-container">
-        <h2>Account Settings</h2>
+      <h2>Account Settings</h2>
 
-        <!-- Profile Section -->
-        <div class="account-section">
-            <h3>👤 Profile Information</h3>
-            <div id="profileMessage" class="message"></div>
+      <!-- Profile Section -->
+      <div class="account-section">
+        <h3>👤 Profile Information</h3>
 
-            <div class="user-info-display" id="userInfoDisplay">
-                <p><strong>Username:</strong> <span id="displayUsername">Loading...</span></p>
-                <p><strong>Email:</strong> <span id="displayEmail">Loading...</span></p>
-                <p><strong>Member Since:</strong> <span id="displayDate">Loading...</span></p>
+        <div id="profileMessage" class="message"></div>
+
+        <div class="user-info-display" id="userInfoDisplay">
+          <p>
+            <strong>Username:</strong>
+            <span id="displayUsername">Loading...</span>
+          </p>
+
+          <p>
+            <strong>Email:</strong>
+            <span id="displayEmail">Loading...</span>
+          </p>
+
+          <p>
+            <strong>Member Since:</strong>
+            <span id="displayDate">Loading...</span>
+          </p>
+        </div>
+
+        <form id="profileForm">
+          <div class="form-group">
+            <label for="username">Username</label>
+
+            <input type="text" id="username" name="username" disabled />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+
+            <input type="email" id="email" name="email" disabled />
+          </div>
+
+          <div class="button-group">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              id="editProfileBtn"
+              onclick="toggleEditProfile(event)"
+            >
+              Edit Profile
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-danger"
+              id="cancelProfileBtn"
+              onclick="cancelEditProfile()"
+              style="display: none"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Password Section -->
+      <div class="account-section">
+        <h3>🔐 Change Password</h3>
+
+        <div id="passwordMessage" class="message"></div>
+
+        <form id="changePasswordForm">
+          <div class="form-group">
+            <label for="currentPassword"> Current Password </label>
+
+            <div class="password-box">
+              <input
+                type="password"
+                id="currentPassword"
+                name="currentPassword"
+                placeholder="Enter your current password"
+                required
+              />
+
+              <span
+                class="toggle-password"
+                onclick="togglePassword('currentPassword', this)"
+              >
+                👁️
+              </span>
             </div>
+          </div>
 
-            <form id="profileForm">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" disabled>
-                </div>
+          <div class="form-group">
+            <label for="newPassword"> New Password </label>
 
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" disabled>
-                </div>
+            <div class="password-box">
+              <input
+                type="password"
+                id="newPassword"
+                name="newPassword"
+                placeholder="Enter new password"
+                required
+              />
 
-                <div class="button-group">
-                    <button type="button" class="btn btn-secondary" onclick="toggleEditProfile()">Edit Profile</button>
-                </div>
-            </form>
-        </div>
-
-        <!-- Change Password Section -->
-        <div class="account-section">
-            <h3>🔐 Change Password</h3>
-            <div id="passwordMessage" class="message"></div>
-
-            <form id="changePasswordForm">
-                <div class="form-group">
-                    <label for="currentPassword">Current Password</label>
-                    <input type="password" id="currentPassword" name="currentPassword" placeholder="Enter your current password" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="newPassword">New Password</label>
-                    <input type="password" id="newPassword" name="newPassword" placeholder="Enter new password" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="confirmPassword">Confirm New Password</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm new password" required>
-                </div>
-
-                <div class="button-group">
-                    <button type="submit" class="btn btn-primary">Update Password</button>
-                    <button type="reset" class="btn btn-secondary">Clear</button>
-                </div>
-            </form>
-        </div>
-
-        <!-- Danger Zone -->
-        <div class="account-section danger-zone">
-            <h3>⚠️ Danger Zone</h3>
-            <p style="color: #666; margin-bottom: 15px;">
-                Once you delete your account, there is no going back. Please be certain.
-            </p>
-
-            <div class="button-group">
-                <button type="button" class="btn btn-danger" onclick="deleteAccount()">Delete Account</button>
+              <span
+                class="toggle-password"
+                onclick="togglePassword('newPassword', this)"
+              >
+                👁️
+              </span>
             </div>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword"> Confirm New Password </label>
+
+            <div class="password-box">
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="Confirm new password"
+                required
+              />
+
+              <span
+                class="toggle-password"
+                onclick="togglePassword('confirmPassword', this)"
+              >
+                👁️
+              </span>
+            </div>
+          </div>
+
+          <div class="button-group">
+            <button type="submit" class="btn btn-primary">
+              Update Password
+            </button>
+
+            <button type="reset" class="btn btn-secondary">Clear</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Danger Zone -->
+      <div class="account-section danger-zone">
+        <h3>⚠️ Danger Zone</h3>
+
+        <p style="color: #666; margin-bottom: 15px">
+          Once you delete your account, there is no going back.
+        </p>
+
+        <div class="button-group">
+          <button
+            type="button"
+            class="btn btn-danger"
+            onclick="deleteAccount()"
+          >
+            Delete Account
+          </button>
         </div>
+      </div>
     </div>
 
     <script>
-        // Load user profile on page load
-        async function loadUserProfile() {
-            try {
-                const response = await fetch('/api/user');
+      async function loadUserProfile() {
+        try {
+          const response = await fetch("/api/user");
 
-                if (!response.ok) {
-                    window.location.href = '/login';
-                    return;
-                }
+          if (!response.ok) {
+            window.location.href = "/login";
+            return;
+          }
 
-                const user = await response.json();
-                displayUserInfo(user);
-            } catch (error) {
-                console.error('Error loading profile:', error);
-                window.location.href = '/login';
-            }
+          const user = await response.json();
+
+          displayUserInfo(user);
+        } catch (error) {
+          console.error("Error loading profile:", error);
+          window.location.href = "/login";
         }
+      }
 
-        function displayUserInfo(user) {
-            document.getElementById('displayUsername').textContent = user.username;
-            document.getElementById('displayEmail').textContent = user.email;
-            document.getElementById('username').value = user.username;
-            document.getElementById('email').value = user.email;
+      function displayUserInfo(user) {
+        document.getElementById("displayUsername").textContent = user.username;
+        document.getElementById("displayEmail").textContent = user.email;
 
-            if (user.createdAt) {
-                const date = new Date(user.createdAt);
-                const formattedDate = date.toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-                document.getElementById('displayDate').textContent = formattedDate;
-            }
+        document.getElementById("username").value = user.username;
+        document.getElementById("email").value = user.email;
+
+        if (user.createdAt) {
+          const date = new Date(user.createdAt);
+
+          const formattedDate = date.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          });
+
+          document.getElementById("displayDate").textContent = formattedDate;
         }
+      }
 
-        function toggleEditProfile() {
-            const usernameInput = document.getElementById('username');
-            const emailInput = document.getElementById('email');
-            const button = event.target;
+      function togglePassword(inputId, element) {
+        const input = document.getElementById(inputId);
 
-            if (usernameInput.disabled) {
-                usernameInput.disabled = false;
-                emailInput.disabled = false;
-                button.textContent = 'Cancel';
-                button.className = 'btn btn-secondary';
+        if (input.type === "password") {
+          input.type = "text";
+          element.textContent = "🙈";
+        } else {
+          input.type = "password";
+          element.textContent = "👁️";
+        }
+      }
+
+      async function toggleEditProfile(event) {
+        const usernameInput = document.getElementById("username");
+
+        const emailInput = document.getElementById("email");
+
+        const messageEl = document.getElementById("profileMessage");
+
+        const editBtn = document.getElementById("editProfileBtn");
+
+        const cancelBtn = document.getElementById("cancelProfileBtn");
+
+        // EDIT MODE
+        if (usernameInput.disabled) {
+          usernameInput.disabled = false;
+          emailInput.disabled = false;
+
+          editBtn.textContent = "Save Profile";
+          editBtn.className = "btn btn-primary";
+
+          cancelBtn.style.display = "block";
+        } else {
+          try {
+            const response = await fetch("/api/update-profile", {
+              method: "PUT",
+
+              headers: {
+                "Content-Type": "application/json",
+              },
+
+              body: JSON.stringify({
+                username: usernameInput.value,
+                email: emailInput.value,
+              }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+              messageEl.textContent = "✓ Profile updated successfully!";
+
+              messageEl.className = "message success";
+
+              document.getElementById("displayUsername").textContent =
+                usernameInput.value;
+
+              document.getElementById("displayEmail").textContent =
+                emailInput.value;
+
+              usernameInput.disabled = true;
+              emailInput.disabled = true;
+
+              editBtn.textContent = "Edit Profile";
+              editBtn.className = "btn btn-secondary";
+
+              cancelBtn.style.display = "none";
+
+              setTimeout(() => {
+                messageEl.className = "message";
+              }, 3000);
             } else {
-                usernameInput.disabled = true;
-                emailInput.disabled = true;
-                button.textContent = 'Edit Profile';
-                button.className = 'btn btn-secondary';
-                // Reload to discard changes
-                location.reload();
+              messageEl.textContent = data.message || "Update failed";
+
+              messageEl.className = "message error";
             }
+          } catch (error) {
+            console.log(error);
+
+            messageEl.textContent = "An error occurred. Please try again.";
+
+            messageEl.className = "message error";
+          }
         }
+      }
 
-        // Change password form
-        document.getElementById('changePasswordForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
+      function cancelEditProfile() {
+        const usernameInput = document.getElementById("username");
 
-            const currentPassword = document.getElementById('currentPassword').value;
-            const newPassword = document.getElementById('newPassword').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            const messageEl = document.getElementById('passwordMessage');
+        const emailInput = document.getElementById("email");
 
-            if (newPassword !== confirmPassword) {
-                messageEl.textContent = 'New passwords do not match!';
-                messageEl.className = 'message error';
-                return;
+        const editBtn = document.getElementById("editProfileBtn");
+
+        const cancelBtn = document.getElementById("cancelProfileBtn");
+
+        usernameInput.disabled = true;
+        emailInput.disabled = true;
+
+        editBtn.textContent = "Edit Profile";
+        editBtn.className = "btn btn-secondary";
+
+        cancelBtn.style.display = "none";
+
+        // Reload original data
+        loadUserProfile();
+      }
+
+      // Change password
+      document
+        .getElementById("changePasswordForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const currentPassword =
+            document.getElementById("currentPassword").value;
+
+          const newPassword = document.getElementById("newPassword").value;
+
+          const confirmPassword =
+            document.getElementById("confirmPassword").value;
+
+          const messageEl = document.getElementById("passwordMessage");
+
+          if (newPassword !== confirmPassword) {
+            messageEl.textContent = "New passwords do not match!";
+
+            messageEl.className = "message error";
+
+            return;
+          }
+
+          if (newPassword.length < 6) {
+            messageEl.textContent =
+              "New password must be at least 6 characters!";
+
+            messageEl.className = "message error";
+
+            return;
+          }
+
+          try {
+            const response = await fetch("/api/change-password", {
+              method: "POST",
+
+              headers: {
+                "Content-Type": "application/json",
+              },
+
+              body: JSON.stringify({
+                currentPassword,
+                newPassword,
+              }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+              messageEl.textContent = "✓ Password changed successfully!";
+
+              messageEl.className = "message success";
+
+              document.getElementById("changePasswordForm").reset();
+
+              setTimeout(() => {
+                messageEl.className = "message";
+              }, 3000);
+            } else {
+              messageEl.textContent =
+                data.message || "Failed to change password";
+
+              messageEl.className = "message error";
             }
+          } catch (error) {
+            messageEl.textContent = "An error occurred. Please try again.";
 
-            if (newPassword.length < 6) {
-                messageEl.textContent = 'New password must be at least 6 characters!';
-                messageEl.className = 'message error';
-                return;
-            }
-
-            try {
-                const response = await fetch('/api/change-password', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ currentPassword, newPassword })
-                });
-
-                const data = await response.json();
-
-                if (response.ok) {
-                    messageEl.textContent = '✓ Password changed successfully!';
-                    messageEl.className = 'message success';
-                    document.getElementById('changePasswordForm').reset();
-                    setTimeout(() => {
-                        messageEl.className = 'message';
-                    }, 3000);
-                } else {
-                    messageEl.textContent = data.message || 'Failed to change password';
-                    messageEl.className = 'message error';
-                }
-            } catch (error) {
-                messageEl.textContent = 'An error occurred. Please try again.';
-                messageEl.className = 'message error';
-            }
+            messageEl.className = "message error";
+          }
         });
 
-        // Delete account function
-        async function deleteAccount() {
-            const confirmed = confirm('Are you sure you want to delete your account? This cannot be undone!');
+      // Delete account
+      async function deleteAccount() {
+        const confirmed = confirm(
+          "Are you sure you want to delete your account?",
+        );
 
-            if (!confirmed) return;
+        if (!confirmed) return;
 
-            const doubleConfirm = prompt('Type "DELETE" to confirm account deletion:');
+        const doubleConfirm = prompt(
+          'Type "DELETE" to confirm account deletion:',
+        );
 
-            if (doubleConfirm !== 'DELETE') {
-                alert('Account deletion cancelled.');
-                return;
-            }
-
-            try {
-                const response = await fetch('/api/delete-account', {
-                    method: 'DELETE'
-                });
-
-                const data = await response.json();
-
-                if (response.ok) {
-                    alert('Account deleted successfully. Redirecting...');
-                    window.location.href = '/';
-                } else {
-                    alert(data.message || 'Failed to delete account');
-                }
-            } catch (error) {
-                console.error('Error deleting account:', error);
-                alert('An error occurred. Please try again.');
-            }
+        if (doubleConfirm !== "DELETE") {
+          alert("Account deletion cancelled.");
+          return;
         }
 
-        // Load profile on page load
-        document.addEventListener('DOMContentLoaded', loadUserProfile);
+        try {
+          const response = await fetch("/api/delete-account", {
+            method: "DELETE",
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            alert("Account deleted successfully.");
+
+            window.location.href = "/";
+          } else {
+            alert(data.message || "Failed to delete account");
+          }
+        } catch (error) {
+          console.error("Error deleting account:", error);
+
+          alert("An error occurred. Please try again.");
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", loadUserProfile);
     </script>
 
     <script src="/js/navbar.js"></script>
-</body>
+  </body>
 </html>

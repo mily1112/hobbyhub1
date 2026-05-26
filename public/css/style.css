@@ -229,3 +229,23 @@ nav a:hover{
 .back-btn:hover{
     background:#bb1d76 !important;
 }
+
+.password-box{
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.password-box input{
+    width: 100%;
+    padding-right: 45px;
+}
+
+.toggle-password{
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+}
