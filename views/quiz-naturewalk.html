@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cooking Quiz - HobbyHub</title>
+    <title>Nature Walk Quiz - HobbyHub</title>
 
     <style>
 
@@ -82,6 +82,21 @@
             transform:translateY(-2px);
         }
 
+        .back-btn{
+            display:block;
+            text-align:center;
+            background:#d67ac5;
+            color:white;
+            text-decoration:none;
+            padding:14px;
+            border-radius:12px;
+            transition:0.3s;
+        }
+
+        .back-btn:hover{
+            background:#bb5aa8;
+        }
+
         #result{
             margin-top:30px;
             text-align:center;
@@ -95,54 +110,60 @@
 
     <div class="quiz-container">
 
-        <h1>🍳 Cooking Quiz</h1>
+        <h1>🌿 Nature walk Quiz</h1>
 
         <!-- Question 1 -->
         <div class="quiz-box">
-            <p>1. Which place is used for cooking?</p>
+            <p>1. What is a nature walk?</p>
 
             <label>
                 <input type="radio" name="q1" value="correct">
-                Kitchen
+                Walking outdoors in nature
             </label>
 
             <label>
                 <input type="radio" name="q1" value="wrong">
-                House
+                Playing video games
             </label>
         </div>
 
         <!-- Question 2 -->
         <div class="quiz-box">
-            <p>2. What tool is used to fry food?</p>
+            <p>2. Which place is suitable for a nature walk?</p>
 
             <label>
                 <input type="radio" name="q2" value="wrong">
-                Spatula
+                Shopping mall
             </label>
 
             <label>
                 <input type="radio" name="q2" value="correct">
-                Pan
+                Park or forest trail
             </label>
         </div>
 
         <!-- Question 3 -->
         <div class="quiz-box">
-            <p>3. Which activity helps make meals?</p>
+            <p>3. Nature walks can help people feel?</p>
 
             <label>
                 <input type="radio" name="q3" value="correct">
-                Cooking
+                Relaxed and refreshed
             </label>
 
             <label>
                 <input type="radio" name="q3" value="wrong">
-                Eating
+                More tired
             </label>
         </div>
 
         <button onclick="submitQuiz()">Submit Quiz</button>
+
+        <br><br>
+
+        <a href="/activities" class="back-btn">
+            ← Back to Activities
+        </a>
 
         <div id="result"></div>
 
@@ -195,7 +216,7 @@
                 status: "completed"
             };
 
-            localStorage.setItem("cooking", JSON.stringify(data));
+            localStorage.setItem("naturewalk", JSON.stringify(data));
 
             document.getElementById("result").innerHTML = `
                 

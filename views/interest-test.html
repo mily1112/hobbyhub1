@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Hobby - HobbyHub</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            background:linear-gradient(135deg, #a998db, #c28ebf);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:20px;
+        }
+
+        .test-container{
+            background:rgb(180, 146, 184);
+            width:100%;
+            max-width:800px;
+            padding:40px;
+            border-radius:25px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:30px;
+            color:#222;
+        }
+
+        .question-box{
+            background:rgba(255, 255, 255, 0.17);
+            padding:20px;
+            border-radius:15px;
+            margin-bottom:20px;
+        }
+
+        .question-box p{
+            font-weight:bold;
+            margin-bottom:15px;
+            font-size:18px;
+        }
+
+        .question-box label{
+            display:block;
+            margin-bottom:10px;
+            cursor:pointer;
+        }
+
+        #find-btn{
+            width:100%;
+            padding:15px;
+            border:none;
+            border-radius:12px;
+            background:#af6499;
+            color:white;
+            font-size:18px;
+            cursor:pointer;
+        }
+
+        #back-btn{
+            width:100%;
+            margin-top:10px;
+            padding:15px;
+            border:none;
+            border-radius:12px;
+            background:#666;
+            color:white;
+            font-size:18px;
+            cursor:pointer;
+        }
+
+        #back-btn:hover{
+            background:#555;
+        }
+
+        #result{
+            margin-top:25px;
+            text-align:center;
+            font-size:20px;
+        }
+
+        .result-btn{
+            background:#694467;
+            color:white;
+            border:none;
+            padding:15px;
+            border-radius:12px;
+            cursor:pointer;
+            font-size:18px;
+        }
+
+        .result-btn:hover{
+            opacity:0.9;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="test-container">
+
+        <h1>Find Your Hobby 🎯</h1>
+
+        <div class="question-box">
+
+            <p>1. What type of activity do you enjoy most?</p>
+
+            <label>
+                <input type="radio" name="activity" value="creative">
+                🎨 Creative
+            </label>
+
+            <label>
+                <input type="radio" name="activity" value="learning">
+                📚 Learning
+            </label>
+
+            <label>
+                <input type="radio" name="activity" value="fitness">
+                💪 Fitness
+            </label>
+
+            <label>
+                <input type="radio" name="activity" value="relaxing">
+                🎵 Relaxing
+            </label>
+
+        </div>
+
+        <div class="question-box">
+
+            <p>2. How do you prefer participating?</p>
+
+            <label>
+                <input type="radio" name="participation" value="solo">
+                Solo
+            </label>
+
+            <label>
+                <input type="radio" name="participation" value="pair">
+                Pair
+            </label>
+
+            <label>
+                <input type="radio" name="participation" value="group">
+                Group
+            </label>
+
+        </div>
+
+        <div class="question-box">
+
+            <p>3. Which environment do you prefer?</p>
+
+            <label>
+                <input type="radio" name="environment" value="indoor">
+                Indoor
+            </label>
+
+            <label>
+                <input type="radio" name="environment" value="outdoor">
+                Outdoor
+            </label>
+
+        </div>
+
+        <div class="question-box">
+
+            <p>4. How far are you willing to travel?</p>
+
+            <label>
+                <input type="radio" name="distance" value="near">
+                Nearby Only
+            </label>
+
+            <label>
+                <input type="radio" name="distance" value="medium">
+                Up To 10 KM
+            </label>
+
+            <label>
+                <input type="radio" name="distance" value="far">
+                Any Distance
+            </label>
+
+        </div>
+
+        <button id="find-btn">
+            Find My Hobby
+        </button>
+
+        <button id="back-btn" onclick="goBack()">
+            Back
+        </button>
+
+        <div id="result"></div>
+
+    </div>
+
+<script>
+
+document.getElementById("find-btn").addEventListener("click", function() {
+
+    let activity =
+        document.querySelector('input[name="activity"]:checked');
+
+    let participation =
+        document.querySelector('input[name="participation"]:checked');
+
+    let environment =
+        document.querySelector('input[name="environment"]:checked');
+
+    let distance =
+        document.querySelector('input[name="distance"]:checked');
+
+    if(!activity || !participation || !environment || !distance){
+
+        alert("Please answer all questions.");
+
+        return;
+    }
+
+    let hobby = "";
+
+    if(activity.value === "creative"){
+
+        if(environment.value === "indoor"){
+            hobby = "Drawing";
+        }else{
+            hobby = "Photography";
+        }
+
+    }
+    else if(activity.value === "learning"){
+
+        if(environment.value === "indoor"){
+            hobby = "Reading";
+        }else{
+            hobby = "Nature Walk";
+        }
+
+    }
+    else if(activity.value === "fitness"){
+
+        if(environment.value === "indoor"){
+            hobby = "Workout";
+        }else{
+            hobby = "Running";
+        }
+
+    }
+    else if(activity.value === "relaxing"){
+
+        if(environment.value === "indoor"){
+            hobby = "Music";
+        }else{
+            hobby = "Dance";
+        }
+
+    }
+
+    let hobbies =
+    JSON.parse(localStorage.getItem("foundHobbies")) || [];
+
+    if(!hobbies.includes(hobby)){
+
+        hobbies.push(hobby);
+
+        localStorage.setItem(
+            "foundHobbies",
+            JSON.stringify(hobbies)
+        );
+    }
+
+    document.getElementById("result").innerHTML = `
+        <h2>Recommended Hobby 🎉</h2>
+
+        <p>${hobby}</p>
+
+        <br>
+
+        <button class="result-btn" onclick="viewActivity('${hobby}')">
+            View Activity
+        </button>
+
+        <br><br>
+
+        <button class="result-btn" onclick="findNearbyPlaces('${hobby}')">
+            Find Nearby Places
+        </button>
+    `;
+
+});
+
+function viewActivity(hobby){
+
+    if(hobby === "Drawing"){
+        window.location.href = "/course-drawing";
+    }
+
+    else if(hobby === "Reading"){
+        window.location.href = "/course-reading";
+    }
+
+    else if(hobby === "Workout"){
+        window.location.href = "/course-workout";
+    }
+
+    else if(hobby === "Music"){
+        window.location.href = "/course-music";
+    }
+
+    else if(hobby === "Dance"){
+        window.location.href = "/course-dance";
+    }
+
+    else if(hobby === "Photography"){
+        window.location.href = "/course-photography";
+    }
+
+    else if(hobby === "Nature Walk"){
+        window.location.href = "/course-naturewalk";
+    }
+
+    else if(hobby === "Running"){
+        window.location.href = "/course-running";
+    }
+
+    else{
+        alert("Activity page not found.");
+    }
+
+}
+
+function findNearbyPlaces(hobby){
+
+    navigator.geolocation.getCurrentPosition(
+
+        function(position){
+
+            let lat = position.coords.latitude;
+            let lng = position.coords.longitude;
+
+            let search = "";
+
+            if(hobby === "Drawing"){
+                search = "art studio";
+            }
+            else if(hobby === "Reading"){
+                search = "library";
+            }
+            else if(hobby === "Workout"){
+                search = "gym";
+            }
+            else if(hobby === "Music"){
+                search = "music school";
+            }
+            else if(hobby === "Dance"){
+                search = "dance studio";
+            }
+            else if(hobby === "Photography"){
+                search = "tourist attraction";
+            }
+            else if(hobby === "Running"){
+                search = "park";
+            }
+            else if(hobby === "Nature Walk"){
+                search = "hiking trail";
+            }
+
+            window.open(
+                `https://www.google.com/maps/search/${search}/@${lat},${lng},13z`,
+                "_blank"
+            );
+
+        },
+
+        function(){
+
+            alert("Please allow location access to find nearby places.");
+
+        }
+
+    );
+
+}
+
+function goBack(){
+
+    if(document.referrer){
+        window.history.back();
+    }else{
+        window.location.href = "/";
+    }
+
+}
+
+</script>
+
+</body>
+</html>

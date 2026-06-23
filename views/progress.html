@@ -133,6 +133,7 @@
 
         <ul>
             <li><a href="/">Home</a></li>
+            <li><a href="/interest-test">Find Your Hobby</a></li>
             <li><a href="/activities">Activities</a></li>
             <li><a href="/login">Login</a></li>
         </ul>
@@ -146,13 +147,14 @@
     <script>
 
         let activities = [
+            "dance",
             "drawing",
-            "coloring",
-            "cooking",
-            "diy",
-            "music",
+            "workout",
             "reading",
-            "workout"
+            "running",
+            "naturewalk",
+            "photography",
+            "music"
         ];
 
         let output = "";
@@ -181,13 +183,14 @@
                         <h2>
 
                             ${
+                                activity === "dance" ? "💃 Dance" :
                                 activity === "drawing" ? "🎨 Drawing" :
-                                activity === "coloring" ? "🖍️ Coloring" :
-                                activity === "cooking" ? "🍳 Cooking" :
-                                activity === "diy" ? "✂️ DIY Crafts" :
-                                activity === "music" ? "🎵 Music" :
-                                activity === "reading" ? "📚 Reading" :
                                 activity === "workout" ? "🏋️ Workout" :
+                                activity === "reading" ? "📚 Reading" :
+                                activity === "running" ? "🏃 Running" :
+                                activity === "naturewalk" ? "🌿 Nature Walk" :
+                                activity === "photography" ? "📷 Photography" :
+                                activity === "music" ? "🎵 Music" :
                                 activity
                             }
                         </h2>
@@ -209,7 +212,9 @@
             output = `
                 <div class="progress-card">
                     <h2>No Progress Yet 🚀</h2>
-                    <p>Complete quizzes to track your activities.</p>
+                    <p>Try activities and complete quizzes 
+                        to track your progress.
+                    </p>
                 </div>
             `;
         }
@@ -218,13 +223,37 @@
             ? (totalScore / completedCount).toFixed(1)
             : 0;
 
+        let foundHobbies =
+            JSON.parse(localStorage.getItem("foundHobbies")) || [];
+
+        let hobbyList = "";
+
+        foundHobbies.forEach(hobby => {
+
+            hobbyList += `<p>⭐ ${hobby}</p>`;
+
+        });
+
+        if(foundHobbies.length === 0){
+
+            hobbyList = "<p>No hobbies discovered yet.</p>";
+
+        }
+
         output = `
 
             <div class="summary-card">
 
-                <h2>Progress Summary 🚀</h2>
+                <h2>Progress Summary 🎯</h2>
                 <p>Activities Completed: ${completedCount}</p>
                 <p>Average Score: ${average}%</p>
+
+            </div>
+            <div class="summary-card">
+
+                <h2>Hobby Discovery 🌟</h2>
+                <p>Hobbies Found: ${foundHobbies.length}</p>
+                ${hobbyList}
 
             </div>
 

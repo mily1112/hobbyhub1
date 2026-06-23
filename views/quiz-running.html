@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DIY Crafts Quiz - HobbyHub</title>
+    <title>Running Quiz - HobbyHub</title>
 
     <style>
 
@@ -82,6 +82,21 @@
             transform:translateY(-2px);
         }
 
+        .back-btn{
+            display:block;
+            text-align:center;
+            background:#d67ac5;
+            color:white;
+            text-decoration:none;
+            padding:14px;
+            border-radius:12px;
+            transition:0.3s;
+        }
+
+        .back-btn:hover{
+            background:#bb5aa8;
+        }
+
         #result{
             margin-top:30px;
             text-align:center;
@@ -95,54 +110,60 @@
 
     <div class="quiz-container">
 
-        <h1>✂️ DIY Crafts Quiz</h1>
+        <h1>🏃 Running Quiz</h1>
 
         <!-- Question 1 -->
         <div class="quiz-box">
-            <p>1. What is used to cut paper?</p>
+            <p>1. What is the main benefit of running?</p>
 
             <label>
                 <input type="radio" name="q1" value="correct">
-                Scissors
+                Improved cardiovascular health
             </label>
 
             <label>
                 <input type="radio" name="q1" value="wrong">
-                Knife
+                Increased screen time
             </label>
         </div>
 
         <!-- Question 2 -->
         <div class="quiz-box">
-            <p>2. Which item helps stick materials?</p>
+            <p>2. What should you wear while running?</p>
 
             <label>
                 <input type="radio" name="q2" value="wrong">
-                Tape
+                High heels
             </label>
 
             <label>
                 <input type="radio" name="q2" value="correct">
-                Glue
+                Comfortable sports shoes
             </label>
         </div>
 
         <!-- Question 3 -->
         <div class="quiz-box">
-            <p>3. DIY crafts improve what skill?</p>
+            <p>3. Where do many people go running?</p>
 
             <label>
                 <input type="radio" name="q3" value="correct">
-                Creativity
+                Park
             </label>
 
             <label>
                 <input type="radio" name="q3" value="wrong">
-                Save money
+                Shopping mall
             </label>
         </div>
 
         <button onclick="submitQuiz()">Submit Quiz</button>
+
+        <br><br>
+
+        <a href="/activities" class="back-btn">
+            ← Back to Activities
+        </a>
 
         <div id="result"></div>
 
@@ -195,7 +216,7 @@
                 status: "completed"
             };
 
-            localStorage.setItem("diy", JSON.stringify(data));
+            localStorage.setItem("running", JSON.stringify(data));
 
             document.getElementById("result").innerHTML = `
                 

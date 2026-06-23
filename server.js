@@ -329,6 +329,10 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "index.html"));
 });
 
+app.get('/interest-test', (req, res) => {
+    res.sendFile(__dirname + '/views/interest-test.html');
+});
+
 app.get("/activities", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "activities.html"));
 });
@@ -354,6 +358,10 @@ app.get("/account", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "account.html"));
 });
 
+app.get("/course-dance", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "course-dance.html"));
+});
+
 app.get("/course-drawing", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "course-drawing.html"));
 });
@@ -366,36 +374,32 @@ app.get("/course-reading", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "course-reading.html"));
 });
 
-app.get("/course-coloring", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "course-coloring.html"));
+app.get("/course-running", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "course-running.html"));
 });
 
-app.get("/course-cooking", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "course-cooking.html"));
+app.get("/course-naturewalk", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "course-naturewalk.html"));
 });
 
-app.get("/course-diy", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "course-diy.html"));
+app.get("/course-photography", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "course-photography.html"));
 });
 
 app.get("/course-music", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "course-music.html"));
 });
 
+app.get("/quiz-dance", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "quiz-dance.html"));
+});
+
 app.get("/quiz-drawing", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "quiz-drawing.html"));
 });
 
-app.get("/quiz-coloring", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "quiz-coloring.html"));
-});
-
-app.get("/quiz-cooking", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "quiz-cooking.html"));
-});
-
-app.get("/quiz-diy", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "quiz-diy.html"));
+app.get("/quiz-workout", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "quiz-workout.html"));
 });
 
 app.get("/quiz-music", (req, res) => {
@@ -406,8 +410,12 @@ app.get("/quiz-reading", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "quiz-reading.html"));
 });
 
-app.get("/quiz-workout", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "quiz-workout.html"));
+app.get("/quiz-naturewalk", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "quiz-naturewalk.html"));
+});
+
+app.get("/quiz-photography", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "quiz-photography.html"));
 });
 
 app.get("/progress", (req, res) => {

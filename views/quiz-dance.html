@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workout Quiz - HobbyHub</title>
+    <title>Dance Quiz - HobbyHub</title>
 
     <style>
 
@@ -110,50 +110,50 @@
 
     <div class="quiz-container">
 
-        <h1>🏋️ Workout Quiz</h1>
+        <h1>💃 Dance Quiz</h1>
 
         <!-- Question 1 -->
         <div class="quiz-box">
-            <p>1. Exercise helps improve?</p>
+            <p>1. What is dance mainly used for?</p>
 
             <label>
                 <input type="radio" name="q1" value="correct">
-                Fitness
+                Movement and expression
             </label>
 
             <label>
                 <input type="radio" name="q1" value="wrong">
-                Tiredness
+                Standing still
             </label>
         </div>
 
         <!-- Question 2 -->
         <div class="quiz-box">
-            <p>2. Which activity burns energy?</p>
+            <p>2. Dancing can help improve?</p>
 
             <label>
                 <input type="radio" name="q2" value="wrong">
-                Eating
+                Decrease in energy
             </label>
 
             <label>
                 <input type="radio" name="q2" value="correct">
-                Running
+                Fitness and coordination
             </label>
         </div>
 
         <!-- Question 3 -->
         <div class="quiz-box">
-            <p>3. What is important during workouts?</p>
+            <p>3. Where can people learn dance?</p>
 
             <label>
                 <input type="radio" name="q3" value="correct">
-                Water
+                Dance studios
             </label>
 
             <label>
                 <input type="radio" name="q3" value="wrong">
-                Mobile phone
+                Hospital
             </label>
         </div>
 
@@ -216,7 +216,7 @@
                 status: "completed"
             };
 
-            localStorage.setItem("workout", JSON.stringify(data));
+            localStorage.setItem("dance", JSON.stringify(data));
 
             document.getElementById("result").innerHTML = `
                 
